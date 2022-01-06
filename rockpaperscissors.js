@@ -27,6 +27,35 @@ function checkWin(playerSelection, computerSelection) {
     
 }
 
-const playerSelection = 'rock';
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game(){
+    let playerWins = 0,    //initialize counters
+        computerWins = 0,
+        tieGames = 0;
+    for(let i = 1; i <=5; i++){  //play 5 rounds and log results
+        let computerSelection = computerPlay();
+        let playerSelection = getPlay();
+        if(playerSelection === computerSelection){
+            tieGames++;
+        } else if(checkWin(playerSelection, computerSelection)){
+            playerWins++;
+        } else computerWins++;
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    if(playerWins > computerWins) {
+        console.log("You win the match!");
+    } else if(computerWins > playerWins){
+        console.log("You lose the match!");
+    } else console.log("It's a tie!");
+    console.log(`You won ${playerWins} games and the computer won ${computerWins}. There were ${tieGames} ties.`);
+}
+
+function getPlay(){
+    let playerSelection;
+    while(!plays.includes(playerSelection)){  //check plays array for presence of playerSelection
+        playerSelection = prompt("Enter rock, paper, or scissors.", "");  //get player play
+        playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1, playerSelection.length).toLowerCase(); //standardize capitalization to match plays array
+    }
+    return playerSelection;
+}
+
+game();
