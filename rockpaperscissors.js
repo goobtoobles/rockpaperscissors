@@ -10,8 +10,6 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     //return a string declaring win, loss, or tie
 
-    // make the casing of playerSelection comparable to computerSelection's returns
-    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1, playerSelection.length).toLowerCase();
     if(playerSelection === computerSelection) {  //check for tie
         return `Tie! You both chose ${playerSelection}.`;
     } else if(checkWin(playerSelection, computerSelection)){  //check for win
